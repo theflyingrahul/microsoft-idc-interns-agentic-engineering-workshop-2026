@@ -3,7 +3,12 @@ import type {
   Entry,
   EntryCreate,
   HeatmapDay,
+  InsightCard,
+  RegressionResult,
+  SummaryStats,
+  TagCorrelation,
   TagsResponse,
+  TimeseriesResult,
   WeeklyStat,
 } from "./types";
 
@@ -43,6 +48,14 @@ export const api = {
     daily: () => request<DailyStat[]>("/stats/daily"),
     weekly: () => request<WeeklyStat[]>("/stats/weekly"),
     heatmap: () => request<HeatmapDay[]>("/stats/heatmap"),
+    summary: () => request<SummaryStats>("/stats/summary"),
   },
   tags: () => request<TagsResponse>("/tags"),
+  insights: {
+    cards: () => request<InsightCard[]>("/insights/cards"),
+    correlations: () => request<TagCorrelation[]>("/insights/correlations"),
+    regression: (target: "mood" | "energy" = "mood") =>
+      request<RegressionResult>(`/insights/regression?target=${target}`),
+    timeseries: () => request<TimeseriesResult>("/insights/timeseries"),
+  },
 };

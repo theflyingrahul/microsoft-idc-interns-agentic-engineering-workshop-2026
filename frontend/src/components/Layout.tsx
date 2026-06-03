@@ -1,10 +1,12 @@
 import type { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
+import ChatBubble from "./ChatBubble";
 
 const links = [
   { to: "/", label: "Dashboard", icon: "📊" },
   { to: "/log", label: "Log Entry", icon: "✏️" },
   { to: "/history", label: "History", icon: "📋" },
+  { to: "/insights", label: "Insights", icon: "🔍" },
 ];
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -47,6 +49,9 @@ export default function Layout({ children }: { children: ReactNode }) {
       <footer className="border-t border-gray-200 py-4 text-center text-xs text-gray-400">
         Pulse — Mood & Energy Tracker · Workshop Seed Project
       </footer>
+
+      {/* Floating chat assistant */}
+      <ChatBubble />
     </div>
   );
 }
